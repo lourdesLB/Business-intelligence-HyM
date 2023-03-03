@@ -1,11 +1,14 @@
 import pandas as pd
 from cleantext import clean
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-file_name = 'google_reviews.csv'
+
+file_name = 'google_reviews_all.csv'
+file_name_balanced = 'google_reviews_balanced.csv'
 
 
 def drop_nulls(dataframe):
-    return dataframe.dropna()
+    return dataframe.dropna().reset_index(drop=True)
 
 
 
@@ -34,6 +37,61 @@ def clean_reviews(dataframe):
 
     dataframe['review'] = dataframe['review'].apply(clean_review)
     return dataframe
+
+def balance_dataset(dataframe):
+    tabla_frecuencias = dataframe['class'].value_counts()
+    if tabla_frecuencias[0] < tabla_frecuencias[1]:
+        number_data_per_class = tabla_frecuencias[0]
+        # print(number_data_per_class)
+
+        df_positive = dataframe.loc[dataframe['class']==1]
+        df_negative = dataframe.loc[dataframe['class']==0]
+
+        # print(df_positive['class'].value_counts())
+        # print(df_negative['class'].value_counts())
+
+
+        sentiment = SentimentIntensityAnalyzer()
+        score_positive_reviews = df_positive['review'].apply(lambda text: sentiment.polarity_scores(text)['compound'])
+        best_positive_reviews = score_positive_reviews.sort_values(ascending=False)
+        index_best_positive_reviews = best_positive_reviews.index.values[0:number_data_per_class]
+
+
+        df_positive_new = dataframe.loc[index_best_positive_reviews]
+
+        dataframe_balanced =  pd.concat([df_negative, df_positive_new])
+        
+        # print(dataframe_balanced.head())
+        # print(dataframe_balanced['class'].value_counts())
+        return dataframe_balanced
+    
+    else:
+        number_data_per_class = tabla_frecuencias[1]
+        # print(number_data_per_class)
+
+        df_positive = dataframe.loc[dataframe['class']==1]
+        df_negative = dataframe.loc[dataframe['class']==0]
+
+        # print(df_positive['class'].value_counts())
+        # print(df_negative['class'].value_counts())
+
+
+        sentiment = SentimentIntensityAnalyzer()
+        score_negative_reviews = df_negative['review'].apply(lambda text: sentiment.polarity_scores(text)['compound'])
+        best_negative_reviews = score_negative_reviews.sort_values(ascending=True)
+        index_best_negative_reviews = best_negative_reviews.index.values[0:number_data_per_class]
+
+
+        df_negative_new = dataframe.loc[index_best_negative_reviews]
+
+        dataframe_balanced =  pd.concat([df_negative_new, df_positive])
+        
+        # print(dataframe_balanced.head())
+        # print(dataframe_balanced['class'].value_counts())
+        return dataframe_balanced
+
+
+
 
 
 def main():
@@ -75,6 +133,12 @@ def main():
     print(dataframe['class'].value_counts())
 
     dataframe.to_csv(file_name, sep='|', index=False) 
+
+
+    dataframe_balanced = balance_dataset(dataframe)
+    dataframe_balanced.to_csv(file_name_balanced, sep='|', index=False) 
+
+
 
 
 
