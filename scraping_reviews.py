@@ -74,20 +74,27 @@ def load_reviews(driver, file_name):
 
     last_height = driver.execute_script("return document.body.scrollHeight")
     number_scrolls = 0
-
-    while number_scrolls < floor(number_reviews/10):
+    
+    while True: # number_scrolls < floor(number_reviews/10):
 
         number_scrolls = number_scrolls+1
-        print(number_scrolls)
     
         scroll_div = driver.find_element('xpath', '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
-        driver.execute_script('arguments[0].scrollBy(0, 5000);', scroll_div)
-        # driver.execute_script('arguments[0].scrollIntoView(true);', scroll_div)
+        # driver.execute_script('arguments[0].scrollBy(0, 5000);', scroll_div)
+        driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', scroll_div)
 
         time.sleep(3)
 
         scroll_div = driver.find_element('xpath', '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
         new_height = driver.execute_script("return document.body.scrollHeight", scroll_div)
+
+        div = driver.find_elements('xpath', '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[10]')[0]
+        noticias = len(div.find_elements(By.CLASS_NAME, 'rsqaWe'))
+
+        print(number_scrolls, noticias)
+
+        if noticias == number_reviews or noticias >1100:
+            break
 
         # if new_height == last_height and number_scrolls>1:
         #     break
@@ -95,7 +102,7 @@ def load_reviews(driver, file_name):
         # last_height = new_height
     
     # Extraer informacion
-    div_review = driver.find_elements('xpath', '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[10]')
+    div = driver.find_elements('xpath', '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[10]')[0]
     time.sleep(3)
 
     names_list = []
@@ -103,26 +110,26 @@ def load_reviews(driver, file_name):
     reviews_list = []
     dates_list = []
 
-    for div in div_review:
-        buttons = div.find_elements(By.TAG_NAME, 'button') 
-        for msg in buttons:
-            if msg.text == 'More':
-                msg.click()
-                # print("CLICKEADO")
-        time.sleep(3)
+    
+    buttons = div.find_elements(By.TAG_NAME, 'button') 
+    for msg in buttons:
+        if msg.text == 'More':
+            msg.click()
+            # print("CLICKEADO")
+    time.sleep(3)
 
-        dates = div.find_elements(By.CLASS_NAME, 'rsqaWe')
-        names = div.find_elements(By.CLASS_NAME, 'd4r55')
-        stars = div.find_elements(By.CLASS_NAME, 'kvMYJc')
-        reviews = div.find_elements(By.CLASS_NAME, 'wiI7pd')
+    dates = div.find_elements(By.CLASS_NAME, 'rsqaWe')
+    names = div.find_elements(By.CLASS_NAME, 'd4r55')
+    stars = div.find_elements(By.CLASS_NAME, 'kvMYJc')
+    reviews = div.find_elements(By.CLASS_NAME, 'wiI7pd')
 
-        print(len(dates))
-        
-        for date, name, star, review in zip(dates, names, stars, reviews):
-            dates_list.append(date.text)
-            stars_list.append(star.get_attribute("aria-label").strip()[0])
-            reviews_list.append(review.text.replace('\n',' '))
-            names_list.append(name.find_element(By.TAG_NAME, 'span').text)
+    print(len(dates))
+    
+    for date, name, star, review in zip(dates, names, stars, reviews):
+        dates_list.append(date.text)
+        stars_list.append(star.get_attribute("aria-label").strip()[0])
+        reviews_list.append(review.text.replace('\n',' '))
+        names_list.append(name.find_element(By.TAG_NAME, 'span').text)
     
     review = pd.DataFrame(
         {
