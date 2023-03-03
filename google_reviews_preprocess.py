@@ -1,7 +1,5 @@
 import pandas as pd
-
-# Este codigo esta en proceso y no ha sido probado !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# Tomorrow lo acabo
+from cleantext import clean
 
 file_name = 'google_reviews.csv'
 
@@ -20,16 +18,22 @@ def parse_class(dataframe):
     dataframe['class'] = dataframe['star'].apply(class_fun)
     return dataframe
 
+
 def remove_columns(dataframe):
     return dataframe[['review','class']]
 
-def correct_translation(dataframe):
-    def drop_notEnglish(text):
-        text_english_raw =  text.split('(Original)')[0].strip()
-        return text_english_raw.replace('(Translated by Google) ','')
-    dataframe['review'] = dataframe['review'].apply(drop_notEnglish)
-    return dataframe
 
+def clean_reviews(dataframe):
+    def clean_review(text):
+        # Eliminate original language and take translation
+        text_english_raw =  text.split('(Original)')[0].strip()
+        text_english = text_english_raw.replace('(Translated by Google) ','')
+        # Remove emojis
+        text_en_noemoji = clean(text_english, no_emoji=True)
+        return text_en_noemoji
+
+    dataframe['review'] = dataframe['review'].apply(clean_review)
+    return dataframe
 
 
 def main():
@@ -60,7 +64,7 @@ def main():
     dataframe = drop_nulls(dataframe)
     dataframe = parse_class(dataframe)
     dataframe = remove_columns(dataframe)
-    dataframe = correct_translation(dataframe)
+    dataframe = clean_reviews(dataframe)
 
     print("\nNumero de datos tras preprocesado:", dataframe.shape[0])
 
