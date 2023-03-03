@@ -23,12 +23,28 @@ driver_path = './chromedriver.exe'
 # H&M London UK, 224 Regent St., London W1B 3BR, United Kingdom
 # url ='https://www.google.com/maps/place/H%26M/@51.5140976,-0.1432836,17z/data=!3m2!4b1!5s0x4876052b665811cb:0x7e5657d0fabeb4f0!4m6!3m5!1s0x4876052aa7f7d857:0xbe912c31c77ef6b8!8m2!3d51.5140976!4d-0.1410949!16s%2Fg%2F1tdz49pz?hl=en'
 # csv_path = 'google_reviews_london2.csv'
+
 # H&M Lakeland USA, 3800 US Hwy 98 N, Lakeland, FL 33809, United States
-url = 'https://www.google.com/maps/place/H%26M/@28.0904932,-81.9781633,17z/data=!3m1!4b1!4m6!3m5!1s0x88dd47145f5524ad:0x15511fa0ae8180f2!8m2!3d28.0904932!4d-81.9781633!16s%2Fm%2F0406n0c?authuser=0&hl=en'
-csv_path = 'google_reviews_lakeland.csv'
+# url = 'https://www.google.com/maps/place/H%26M/@28.0904932,-81.9781633,17z/data=!3m1!4b1!4m6!3m5!1s0x88dd47145f5524ad:0x15511fa0ae8180f2!8m2!3d28.0904932!4d-81.9781633!16s%2Fm%2F0406n0c?authuser=0&hl=en'
+# csv_path = 'google_reviews_lakeland.csv'
 # H&M Boston USA, 100 Newbury St, Boston, MA 02116, United States
 # url = 'https://www.google.com/maps/place/H%26M+HOME/@42.3513545,-71.0752124,17z/data=!3m1!4b1!4m6!3m5!1s0x89e3708370927693:0x22c5e58db8bba597!8m2!3d42.3513545!4d-71.0752124!16s%2Fg%2F1v7tmcxn?authuser=0&hl=en'
 # csv_path = 'google_reviews_boston.csv'
+
+# H&M Toronto CANADA, 1 Dundas St W, Toronto, ON M5G 1Z3, Canada
+url = 'https://www.google.com/maps/place/H%26M/@43.655842,-79.383472,17z/data=!3m2!4b1!5s0x882b34cb605da33d:0xb43516d747d77810!4m6!3m5!1s0x882b34cb20dd7681:0xf0e920f368bb9da8!8m2!3d43.655842!4d-79.3812833!16s%2Fg%2F1tfkrdjg?hl=en&authuser=0'
+csv_path = 'google_reviews_toronto.csv'
+# H&M Toronto CANADA, 1 Bass Pro Mills Dr, Vaughan, ON L4K 2M9, Canada
+# url = 'https://www.google.com/maps/place/H%26M/@43.824956,-79.5399041,17z/data=!3m1!4b1!4m6!3m5!1s0x882b2f400c4e8d99:0xc90928d80202c222!8m2!3d43.824956!4d-79.5377154!16s%2Fg%2F12hp6vqh6?hl=en&authuser=0'
+# csv_path = 'google_reviews_toronto2.csv'
+
+# H&M Quebec CANADA, 1100 Saint-Catherine St W, Montreal, Quebec H3B 1H4, Canada
+# url = 'https://www.google.com/maps/place/H%26M/@45.499688,-73.5749561,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc91a43b131d733:0xc4c0a045ec724d05!8m2!3d45.499688!4d-73.5727674!16s%2Fg%2F1th81kjz?hl=en&authuser=0'
+# csv_path = 'google_reviews_quebec.csv'
+# H&M Vancouver CANADA, 609 Granville St, Vancouver, BC V7Y 1G5, Canada
+# url = 'https://www.google.es/maps/place/H%26M/@49.2830545,-123.1197632,17z/data=!3m2!4b1!5s0x5486717f68d3cb43:0xb43516d794769ff0!4m6!3m5!1s0x5486717f457c1d53:0x692a297fdc2a2f40!8m2!3d49.2830545!4d-123.1175745!16s%2Fg%2F1q5bp90vp?hl=en&authuser=0'
+# csv_path = 'google_reviews_vancouver.csv'
+
 
 
 def connect(driver_path, url):

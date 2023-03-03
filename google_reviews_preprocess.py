@@ -20,10 +20,15 @@ def parse_class(dataframe):
     dataframe['class'] = dataframe['star'].apply(class_fun)
     return dataframe
 
-
-
 def remove_columns(dataframe):
     return dataframe[['review','class']]
+
+def correct_translation(dataframe):
+    def drop_notEnglish(text):
+        text_english_raw =  text.split('(Original)')[0].strip()
+        return text_english_raw.replace('(Translated by Google) ','')
+    dataframe['review'] = dataframe['review'].apply(drop_notEnglish)
+    return dataframe
 
 
 
@@ -32,13 +37,20 @@ def main():
     df_london2 = pd.read_csv('google_reviews_london2.csv', sep='|')
     df_boston = pd.read_csv('google_reviews_boston.csv', sep='|')
     df_lakeland = pd.read_csv('google_reviews_lakeland.csv', sep='|')
+    df_toronto = pd.read_csv('google_reviews_toronto.csv', sep='|')
+    df_toronto2 = pd.read_csv('google_reviews_toronto2.csv', sep='|')
+    df_quebec = pd.read_csv('google_reviews_quebec.csv', sep='|')
+    df_vancouver = pd.read_csv('google_reviews_vancouver.csv', sep='|')
 
-    dataframes = [df_london, df_london2, df_boston, df_lakeland]
+    dataframes = [df_london, df_london2, 
+                  df_boston, df_lakeland, 
+                  df_toronto, df_toronto2, 
+                  df_quebec, df_vancouver
+                  ]
     dataframe = pd.concat(dataframes)
 
     # Faltaria hacer un parseito bueno pa quitar mierda de las reviews
-    # Por ejemplo quitar Traduccion (texto equivalente en español ) etc
-
+    
     # Aqui faltaria coger el dataframe y ver cuantas positivas hay y cuantas negativas y balancear
     # Una idea q se me ocurre es usar multinomial naive-bayes para quedarnos con las mas positivas 
     # de las positivas y las mas negativas de las negativas (porque hay muchas que son confusas)
@@ -48,6 +60,7 @@ def main():
     dataframe = drop_nulls(dataframe)
     dataframe = parse_class(dataframe)
     dataframe = remove_columns(dataframe)
+    dataframe = correct_translation(dataframe)
 
     print("\nNumero de datos tras preprocesado:", dataframe.shape[0])
 
