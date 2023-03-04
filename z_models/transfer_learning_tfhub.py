@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 
 embedding = "https://tfhub.dev/google/nnlm-en-dim50/2"
 
-X = pd.read_csv("google_reviews_balanced.csv", sep='|')
+X = pd.read_csv("../google_reviews_scraping_preprocess/google_reviews_balanced.csv", sep='|')
 y = X.pop("class")
 
 # 80%-10%-10% --> primero 20% test
