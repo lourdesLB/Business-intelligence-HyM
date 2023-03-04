@@ -8,7 +8,7 @@ import time
 from math import floor
 import pandas as pd
 
-driver_path = './chromedriver.exe'
+driver_path = '../chromedriver.exe'
 
 # URL de prueba
 # url = 'https://www.google.com/maps/place/Escuela+T%C3%A9cnica+Superior+de+Ingenier%C3%ADa+Inform%C3%A1tica/@37.3582954,-5.9895639,17z/data=!3m1!4b1!4m6!3m5!1s0xd126dd4a3055555:0x29c3f634f8a021b8!8m2!3d37.3582954!4d-5.9873752!16s%2Fg%2F121yb2tm'
