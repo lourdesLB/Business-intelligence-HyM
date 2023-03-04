@@ -55,4 +55,7 @@ history = model.fit(
 results = model.evaluate(X_test,y_test, verbose=2)
 print("Resultados")
 print("test loss, test acc:", results)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 533132f4dbda9164a21fd16d40e2d30d694155cc
