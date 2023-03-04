@@ -6,5 +6,5 @@ c.Limit = 100
 c.Pandas = True
 twint.run.Search(c)
 Tweets_df = twint.storage.panda.Tweets_df
-Tweets_df.to_csv("tweets.csv")
+Tweets_df.to_csv("tweets_raw.csv")
 print(Tweets_df.head())

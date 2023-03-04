@@ -5,7 +5,7 @@ from langdetect import detect
 sentiment_analysis = pipeline(model="finiteautomata/bertweet-base-sentiment-analysis")
 
 tweets = []
-df = pd.read_csv("tweets.csv")
+df = pd.read_csv("tweets_raw.csv")
 search = df["tweet"]
 
 for tweet in search:
