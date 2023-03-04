@@ -2,9 +2,11 @@ import pandas as pd
 from cleantext import clean
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
-
+from textblob import TextBlob
 
 file_name = 'google_news.csv'
+file_name_filter = 'google_news_filter.csv'
+
 
 
 def drop_nulls(dataframe):
@@ -36,6 +38,13 @@ def clean_translate_news(dataframe):
     dataframe = dataframe.apply(clean_review)
     return dataframe
 
+def filter_news(serie):
+    sentiment = SentimentIntensityAnalyzer()
+    score_reviews = serie.apply(lambda text: TextBlob(text).sentiment.subjectivity > 0.4 ).to_list()
+    # print(score_reviews)
+    return serie[score_reviews]
+
+
 
 
 def main():
@@ -44,10 +53,13 @@ def main():
     print("\nNumero de datos totales:", serie_news.shape[0])
 
     serie = clean_translate_news(serie_news)
-    print(serie)
+    # print(serie)
 
     serie.to_csv(file_name, index=False) 
 
+    serie2 = filter_news(serie)
+    # print(serie2.shape)
+    serie2.to_csv(file_name_filter, index=False) 
 
 
 if __name__ == "__main__":

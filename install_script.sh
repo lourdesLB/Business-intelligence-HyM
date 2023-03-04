@@ -20,3 +20,4 @@ pip install beautifulsoup4
 pip install clean-text
 pip install deep_translator
 pip install vaderSentiment
+pip install textblob
