@@ -119,8 +119,10 @@ sentiment_model = pipeline(model="lourdesLB/finetuning-sentiment-model-3000-samp
 # print(sentiment_model(["I love this move", "This movie sucks!"]))
 
 import pandas as pd
-tuits = pd.read_csv('../twitter_scraping_preprocess/tweets_filter.csv', sep='|')['tweet'].to_list()
+# tuits = pd.read_csv('../twitter_scraping_preprocess/tweets_cleaned2.csv', sep='|')['tweet'].to_list()
+tuits = pd.read_csv('../twitter_scraping_preprocess/tweets_filter2.csv', sep='|')['tweet'].to_list()
 
+print(len(tuits))
 for tuit in tuits:
     print("\n", tuit)
     print(sentiment_model(tuit))

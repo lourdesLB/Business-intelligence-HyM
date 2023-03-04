@@ -4,11 +4,19 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
 from textblob import TextBlob
 import re
+import spacy
+import spacy
+from spacy.language import Language
+from spacy_language_detection import LanguageDetector
 
-file_name_source = 'tweets.csv'
-file_name_cleaned = 'tweets_cleaned.csv'
-file_name_filter = 'tweets_filter.csv'
 
+# file_name_source = 'tweets.csv'
+# file_name_cleaned = 'tweets_cleaned.csv'
+# file_name_filter = 'tweets_filter.csv'
+
+file_name_source = 'tweets2.csv'
+file_name_cleaned = 'tweets_cleaned2.csv'
+file_name_filter = 'tweets_filter2.csv'
 
 
 def drop_nulls(serie):
@@ -16,6 +24,9 @@ def drop_nulls(serie):
 
 
 def clean_translate_tweets(serie):
+    def get_lang_detector(nlp, name):
+        return LanguageDetector(seed=42)
+
     def clean_review(text):
         # Eliminate emojis
         text_cleaned = clean(text, no_emoji=True)  
@@ -32,6 +43,11 @@ def clean_translate_tweets(serie):
         # Correct spelling
         text_correct = str(TextBlob(text_english).correct())
         print(text_correct)
+
+        if len(text_correct)<8:  
+            # son restos vacions, los ponemos a nulo para luego quitarlos
+            # o no los ha traducido bien
+            return ''
         return text_correct
 
     serie = serie.apply(clean_review)
@@ -40,7 +56,7 @@ def clean_translate_tweets(serie):
 
 def filter_tweets(serie):
     sentiment = SentimentIntensityAnalyzer()
-    score_tweets = serie.apply(lambda text: abs(TextBlob(text).sentiment.polarity) > 0.3 ).to_list()
+    score_tweets = serie.apply(lambda text: abs(TextBlob(text).sentiment.polarity) > 0.25 ).to_list()
     # print(score_reviews)
     return serie[score_tweets]
 
