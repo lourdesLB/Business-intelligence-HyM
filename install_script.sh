@@ -18,4 +18,5 @@ pip install beautifulsoup4
 
 # Librerias preprocesado
 pip install clean-text
+pip install deep_translator
 pip install vaderSentiment

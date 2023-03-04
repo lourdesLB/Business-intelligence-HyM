@@ -9,10 +9,8 @@ from math import floor
 import pandas as pd
 
 driver_path = './chromedriver.exe'
-# URL de prueba
-url = 'https://news.google.com/search?q=h%26m&hl=es&gl=ES&ceid=ES%3Aes'
-# Hay que conseguir traducirla
-# Tomorrow parseo quora
+url = 'https://news.google.com/search?q=%22h%26m%22&hl=es&gl=ES&ceid=ES%3Aes'
+csv_name = 'google_news_spanish.csv'
 
 
 def connect(driver_path, url):
@@ -50,11 +48,8 @@ def load_news(driver, file_name):
 
 def main():
     driver = connect(driver_path, url)
-    load_news(driver, 'google_news.csv')
-
-
-    while True:
-        pass
+    load_news(driver, csv_name)
+    time.sleep(10)
 
 
 
