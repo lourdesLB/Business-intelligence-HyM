@@ -14,9 +14,14 @@ from spacy_language_detection import LanguageDetector
 # file_name_cleaned = 'tweets_cleaned.csv'
 # file_name_filter = 'tweets_filter.csv'
 
-file_name_source = 'tweets2.csv'
-file_name_cleaned = 'tweets_cleaned2.csv'
-file_name_filter = 'tweets_filter2.csv'
+# file_name_source = 'tweets2.csv'
+# file_name_cleaned = 'tweets_cleaned2.csv'
+# file_name_filter = 'tweets_filter2.csv'
+
+file_name_source = 'tweets3.csv'
+file_name_cleaned = 'tweets_cleaned3.csv'
+file_name_filter = 'tweets_filter3.csv'
+
 
 
 def drop_nulls(serie):
@@ -39,16 +44,19 @@ def clean_translate_tweets(serie):
         combined_pat1 = r'|'.join(pat1)
         text_cleaned = re.sub(combined_pat1,' ',text_cleaned).lower().strip()
         # Translate into English
-        text_english = GoogleTranslator(source='auto', target='en').translate(text_cleaned)
-        # Correct spelling
-        text_correct = str(TextBlob(text_english).correct())
-        print(text_correct)
+        try: 
+            text_english = GoogleTranslator(source='auto', target='en').translate(text_cleaned)
+            # Correct spelling
+            text_correct = str(TextBlob(text_english).correct())
+            print(text_correct)
 
-        if len(text_correct)<8:  
-            # son restos vacions, los ponemos a nulo para luego quitarlos
-            # o no los ha traducido bien
+            if len(text_correct)<8:  
+                # son restos vacions, los ponemos a nulo para luego quitarlos
+                # o no los ha traducido bien
+                return ''
+            return text_correct
+        except Exception as e:
             return ''
-        return text_correct
 
     serie = serie.apply(clean_review)
     return serie
@@ -56,7 +64,7 @@ def clean_translate_tweets(serie):
 
 def filter_tweets(serie):
     sentiment = SentimentIntensityAnalyzer()
-    score_tweets = serie.apply(lambda text: abs(TextBlob(text).sentiment.polarity) > 0.25 ).to_list()
+    score_tweets = serie.apply(lambda text: abs(TextBlob(text).sentiment.polarity) > 0.4 ).to_list()
     # print(score_reviews)
     return serie[score_tweets]
 

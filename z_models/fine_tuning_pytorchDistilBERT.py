@@ -119,10 +119,18 @@ sentiment_model = pipeline(model="lourdesLB/finetuning-sentiment-model-3000-samp
 # print(sentiment_model(["I love this move", "This movie sucks!"]))
 
 import pandas as pd
-# tuits = pd.read_csv('../twitter_scraping_preprocess/tweets_cleaned2.csv', sep='|')['tweet'].to_list()
-tuits = pd.read_csv('../twitter_scraping_preprocess/tweets_filter2.csv', sep='|')['tweet'].to_list()
+# data = pd.read_csv('../twitter_scraping_preprocess/tweets_cleaned2.csv', sep='|')['tweet'].to_list()
+# data = pd.read_csv('../twitter_scraping_preprocess/tweets_filter2.csv', sep='|')['tweet'].to_list()
+# data = pd.read_csv('../google_news_scraping_preprocess/google_news_cleaned.csv', sep='|').iloc[:,0].to_list()
+# data = pd.read_csv('../facebook_scraping_preprocess/facebook_cleaned.csv', sep='|').iloc[:,0].to_list()
+# data = pd.read_csv('../facebook_scraping_preprocess/facebook_cleaned2.csv', sep='|').iloc[:,0].to_list()
+# data = pd.read_csv('../facebook_scraping_preprocess/facebook_cleaned3.csv', sep='|').iloc[:,0].to_list()
+# data = pd.read_csv('../quora_scraping_preprocess/quora.csv', sep='|').iloc[:,0].to_list()
+data = pd.read_csv('../quora_scraping_preprocess/quora2.csv', sep='|').iloc[:,0].to_list()
 
-print(len(tuits))
-for tuit in tuits:
-    print("\n", tuit)
-    print(sentiment_model(tuit))
+
+
+print(len(data))
+for review in data:
+    print("\n", review)
+    print(sentiment_model(review))

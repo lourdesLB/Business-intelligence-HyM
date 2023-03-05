@@ -8,7 +8,7 @@ import time
 from math import floor
 import pandas as pd
 
-driver_path = './chromedriver.exe'
+driver_path = '../chromedriver.exe'
 url = 'https://news.google.com/search?q=%22h%26m%22&hl=es&gl=ES&ceid=ES%3Aes'
 csv_name = 'google_news_spanish.csv'
 

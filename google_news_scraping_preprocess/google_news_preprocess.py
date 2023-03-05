@@ -4,8 +4,9 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
 from textblob import TextBlob
 
-file_name = 'google_news.csv'
-file_name_filter = 'google_news_filter.csv'
+file_name_source = 'google_news_spanish.csv'
+file_name_cleaned = 'google_news_cleaned2.csv'
+file_name_filter = 'google_news_filter2.csv'
 
 
 
@@ -40,7 +41,7 @@ def clean_translate_news(dataframe):
 
 def filter_news(serie):
     sentiment = SentimentIntensityAnalyzer()
-    score_reviews = serie.apply(lambda text: TextBlob(text).sentiment.subjectivity > 0.4 ).to_list()
+    score_reviews = serie.apply(lambda text: abs(TextBlob(text).sentiment.polarity) > 0.4 ).to_list()
     # print(score_reviews)
     return serie[score_reviews]
 
@@ -48,14 +49,14 @@ def filter_news(serie):
 
 
 def main():
-    serie_news = pd.read_csv('google_news_spanish.csv', sep='|').iloc[:,0]
+    serie_news = pd.read_csv(file_name_source, sep='|').iloc[:,0]
     
     print("\nNumero de datos totales:", serie_news.shape[0])
 
     serie = clean_translate_news(serie_news)
     # print(serie)
 
-    serie.to_csv(file_name, index=False) 
+    serie.to_csv(file_name_cleaned, index=False) 
 
     serie2 = filter_news(serie)
     # print(serie2.shape)
