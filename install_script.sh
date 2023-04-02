@@ -17,6 +17,9 @@ pip install torch
 pip install ipywidgets
 pip install --upgrade huggingface_hub
 
+pip install wordcloud
+
+
 # Librerias de scraping
 pip install selenium
 pip install parsel
