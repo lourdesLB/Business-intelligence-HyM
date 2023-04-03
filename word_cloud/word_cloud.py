@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from PIL import Image
+import matplotlib
 
 from textblob import TextBlob
 
@@ -22,9 +23,8 @@ def main():
     df1_negative_text = df1[df1['class']==0]['review'].to_list()
 
     df2 = pd.read_csv(file_predictions, sep="|")
-    df2_positive_text = df2[df2['label']==1]['text'].to_list()
-    df2_negative_text = df2[df2['label']==0]['text'].to_list()
-
+    df2_positive_text = df2[df2['label']=='LABEL_1']['text'].to_list()
+    df2_negative_text = df2[df2['label']=='LABEL_0']['text'].to_list()
 
     df_positive_text = [ str(elemento) for elemento in 
                         df1_positive_text + df2_positive_text]
@@ -41,7 +41,8 @@ def main():
     # ---------------------- WORDCLOUD ----------------------
 
     my_stopwords = set(STOPWORDS)
-    my_stopwords.update(['store', 'stores', 'h', 'm', 'item', 'clothe', 'clothes', 'alway'])
+    my_stopwords.update(['store', 'stores', 'h', 'm', 'item', 'clothe', 
+                         'clothes', 'alway', 'said', 'go', 'will', 'went'])
 
     mask_positive=np.array(Image.open('thumb_up.jpg'))
     mask_positive=np.where(mask_positive > 3, 255, mask_positive)
@@ -52,7 +53,7 @@ def main():
 
             mask=mask_positive,
             background_color = "white",
-            colormap= 'viridis',
+            colormap= matplotlib.colormaps['viridis'].reversed(),
             contour_color='green', contour_width=0.25,
             width=mask_positive.shape[1], height=mask_positive.shape[0]                            
             ).generate(positive_text)
@@ -74,7 +75,7 @@ def main():
 
             mask=mask_negative,
             background_color = "white",
-            colormap='plasma', # 'gist_heat',
+            colormap=matplotlib.colormaps['plasma'].reversed(), # 'gist_heat',
             contour_color='red', contour_width=0.25,
             width=mask_negative.shape[1], height=mask_negative.shape[0]                            
             ).generate(negative_text)
