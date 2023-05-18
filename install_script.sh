@@ -16,6 +16,8 @@ pip install torch
 !apt-get install git-lfs
 pip install ipywidgets
 pip install --upgrade huggingface_hub
+!pip uninstall transformers -y
+!pip install transformers==4.28.0
 
 pip install wordcloud
 
