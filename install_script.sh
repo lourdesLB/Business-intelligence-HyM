@@ -12,12 +12,12 @@ pip install scikit-learn
 pip install tensorflow
 
 pip install torch
-!pip install datasets transformers huggingface_hub
-!apt-get install git-lfs
+pip install datasets transformers huggingface_hub
+apt-get install git-lfs
 pip install ipywidgets
 pip install --upgrade huggingface_hub
-!pip uninstall transformers -y
-!pip install transformers==4.28.0
+pip uninstall transformers -y
+pip install transformers==4.28.0
 
 pip install wordcloud
 
