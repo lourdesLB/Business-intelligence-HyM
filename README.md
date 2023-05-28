@@ -12,16 +12,21 @@
 
 1. Sentiment analysis on customers opinion about the brand  
 Predicting model results and inference API to test: https://huggingface.co/lourdesLB/finetuning-sentiment-model
+With this model we got an score of 96% in predicting the sentiment of reviews made by the customers
 
 [![](https://mermaid.ink/img/pako:eNplkD1rAzEMhv-K0JwMaZvlhkJCP7ZmSKBD3UHYusRgW4c_KCHkv1d3hIM2izHS877SqwtacYwdHjMNJzhsTQLYfBncZkrOp2MHhVP1UR-gROFcfAFJYFupEjkXg9-TBpbLZ9isVPrGVFvmoryDIi1bnqnVDRu5d5ZpqrcUIIil6iX9Bx8U3Iv1ikR2nibTXnKLd56Pin7wTxlouNvrabT53B3mDH_b67E95xyyTrLjNhD1OkFZXKCGjeSd3uoyKg3WE0c22OnXcU8tVIMmXRWlVmV_Tha7mhsvsA2OKr940rwRu55CmauvzlfJt-L1Fzw_gr8?type=png)](https://mermaid.live/edit#pako:eNplkD1rAzEMhv-K0JwMaZvlhkJCP7ZmSKBD3UHYusRgW4c_KCHkv1d3hIM2izHS877SqwtacYwdHjMNJzhsTQLYfBncZkrOp2MHhVP1UR-gROFcfAFJYFupEjkXg9-TBpbLZ9isVPrGVFvmoryDIi1bnqnVDRu5d5ZpqrcUIIil6iX9Bx8U3Iv1ikR2nibTXnKLd56Pin7wTxlouNvrabT53B3mDH_b67E95xyyTrLjNhD1OkFZXKCGjeSd3uoyKg3WE0c22OnXcU8tVIMmXRWlVmV_Tha7mhsvsA2OKr940rwRu55CmauvzlfJt-L1Fzw_gr8)
 
 2. Dashboards about sales tendency  
 PowerBI dashboard app link: https://app.powerbi.com/view?r=eyJrIjoiZTk1NWI4ZDQtYmU1NC00MDcyLWFlNzQtZTVhZmM2MGIxNDYxIiwidCI6ImVmNGE2ODRlLTgxYjUtNDkxYy1hOThlLWM3YjMxYmU2YzQ2OSIsImMiOjh9  
+This dashboard provides an useful insight about sales tendencies and customers satisfaction
 
 [![](https://mermaid.ink/img/pako:eNpt0LFuAjEMBuBXsbx0gYGy3VCpKQxsSHRrOrhnw51056A4GRDi3esD1EqILfnzOXZyxjaxYIOHTMcOPkNUgPAVMWyAybqfRJkt4vc1h_n8DcLCj3c0iD0RizuZzLtqpQFIGUzIkvrGprpH_Or4o1pJo2R7uRmwUvn0KJcutzlxbctzeHPThSF7414P_0NeTVScofcZqWd_9nmqilg6GSVi40uWPdWhRIx6cUq1pN1JW2xKrjLDemQqsurJP2zEZk-D_aVr7kvK9_DyCxb_cFE?type=png)](https://mermaid.live/edit#pako:eNpt0LFuAjEMBuBXsbx0gYGy3VCpKQxsSHRrOrhnw51056A4GRDi3esD1EqILfnzOXZyxjaxYIOHTMcOPkNUgPAVMWyAybqfRJkt4vc1h_n8DcLCj3c0iD0RizuZzLtqpQFIGUzIkvrGprpH_Or4o1pJo2R7uRmwUvn0KJcutzlxbctzeHPThSF7414P_0NeTVScofcZqWd_9nmqilg6GSVi40uWPdWhRIx6cUq1pN1JW2xKrjLDemQqsurJP2zEZk-D_aVr7kvK9_DyCxb_cFE)
 
 3. Marketing campaigns analysis and sales prediction  
 Models and data science analysis: marketing_sales_prediction/marketing_sales_prediction.ipynb  
+This study provides an useful insight about marketing campaigns, the best way to invest in marketing and the preditcion of sales with a metric of error of only 2% and a metric of explainability of R^2 of 0.99. 
+We also provide an overview of XAI over our regression models.
+
 [![](https://mermaid.ink/img/pako:eNpVjr0OgzAMhF8l8gxDOzJ0KO3YiW5NBysxEJX8KHEGhHj3BlRVQl5O5893XkB5TdDAEDGM4nmVToj2JeGB8UNs3CAU2oBFJAnvfSvq-iLaU4E6nCiJEEkbxca7I3E-xCSOyDTMO7MNVGApWjS61C_bnQQeyZKEpkhNPeaJJUi3FhQz-252ChqOmSrIQZe4m8HyuIWmxyn93bs27OPPXL8REkw6?type=png)](https://mermaid.live/edit#pako:eNpVjr0OgzAMhF8l8gxDOzJ0KO3YiW5NBysxEJX8KHEGhHj3BlRVQl5O5893XkB5TdDAEDGM4nmVToj2JeGB8UNs3CAU2oBFJAnvfSvq-iLaU4E6nCiJEEkbxca7I3E-xCSOyDTMO7MNVGApWjS61C_bnQQeyZKEpkhNPeaJJUi3FhQz-252ChqOmSrIQZe4m8HyuIWmxyn93bs27OPPXL8REkw6)
 
 <br>
