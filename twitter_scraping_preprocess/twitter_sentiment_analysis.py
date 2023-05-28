@@ -12,7 +12,7 @@ for tweet in search:
     try:
      lang = detect(tweet)
      if lang == "en":
-        tweet = tweet[:157] # Hay que recortar el tweet para que se lo trague el modelo
+        tweet = tweet[:157] # Hay que recortar el tweet para que el modelo pueda procesarlo
         sentiment = sentiment_analysis(tweet)
         tweets.append({'tweet': tweet, 'sentiment': sentiment[0]['label']})
     except:

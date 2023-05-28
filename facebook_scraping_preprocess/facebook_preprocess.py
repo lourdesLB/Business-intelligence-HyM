@@ -46,15 +46,6 @@ def clean_translate_facebook(serie):
         # Translate into English
         try: 
             text_english = GoogleTranslator(source='auto', target='en').translate(text_cleaned)
-            # Correct spelling
-            # text_correct = str(TextBlob(text_english).correct())
-            # print(text_correct)
-
-            # if len(text_correct)<8:  
-            #     # son restos vacions, los ponemos a nulo para luego quitarlos
-            #     # o no los ha traducido bien
-            #     return ''
-            print(text_english)
             return text_english
         except Exception as e:
             return ''

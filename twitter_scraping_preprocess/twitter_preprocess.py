@@ -52,7 +52,6 @@ def clean_translate_tweets(serie):
 
             if len(text_correct)<8:  
                 # son restos vacions, los ponemos a nulo para luego quitarlos
-                # o no los ha traducido bien
                 return ''
             return text_correct
         except Exception as e:

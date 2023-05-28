@@ -110,12 +110,6 @@ def main():
                   df_quebec, df_vancouver
                   ]
     dataframe = pd.concat(dataframes)
-
-    # Faltaria hacer un parseito bueno pa quitar mierda de las reviews
-    
-    # Aqui faltaria coger el dataframe y ver cuantas positivas hay y cuantas negativas y balancear
-    # Una idea q se me ocurre es usar multinomial naive-bayes para quedarnos con las mas positivas 
-    # de las positivas y las mas negativas de las negativas (porque hay muchas que son confusas)
     
     print("\nNumero de datos totales:", dataframe.shape[0])
 
